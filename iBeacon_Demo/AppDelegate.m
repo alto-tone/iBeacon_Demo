@@ -32,9 +32,8 @@
     return YES;
 }
 
-/** 受信したローカル通知を経由してアプリを起動している場合に通知される **/
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
+//受信したローカル通知を経由してアプリを起動している場合に通知される
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     UIApplicationState applicationState = [[UIApplication sharedApplication] applicationState];
     
     //アプリがフォアグラウンドで実行されている場合はアラートを表示
@@ -43,7 +42,7 @@
     }
 }
 
-/** アラートの表示 **/
+//アラートの表示
 - (void)showAlertView:(NSString *)message {
     
     if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
