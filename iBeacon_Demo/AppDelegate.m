@@ -21,8 +21,6 @@
     //通知設定
     if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)]) {
         //【iOS8】
-        //デバイストークンの取得
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
         //許可アラートの表示
         UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
@@ -30,6 +28,17 @@
     }
     
     return YES;
+}
+
+//【iOS8】Settingsを登録後呼ばれる
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    //デバイストークンの取得
+    [application registerForRemoteNotifications];
+}
+
+//デバイストークン取得後呼ばれる
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    //サーバからリモート通知を行う場合は、ここでサーバ通信
 }
 
 //受信したローカル通知を経由してアプリを起動している場合に通知される
